@@ -1,12 +1,16 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Child } from './child/child';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [Child],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
+
 export class App {
-  protected readonly title = signal('practice-app');
+  userName = "JVM"
+  userCity = "NYC"
+  userAge = 21
+  userRole = "Angular Developer"
 }
