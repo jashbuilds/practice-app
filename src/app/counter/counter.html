@@ -1,0 +1,8 @@
+@if(count() === 19) {
+    <h3>Initial Count: {{ count() }}</h3>
+} @else {
+    <h3>Count: {{ count() }}</h3>
+}
+
+<button (click)="updateCount(-1)">Decrement</button> &nbsp; &nbsp;
+<button (click)="updateCount(+1)">Increment</button>

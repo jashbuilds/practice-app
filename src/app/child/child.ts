@@ -1,15 +1,18 @@
-import { Component, input } from '@angular/core';
+import { Component, model } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-child',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './child.html',
   styleUrl: './child.css',
 })
-
 export class Child {
-  userName = input.required<string>();
-  userCity = input.required<string>();
-  userAge = input.required<number>();
-  userRole = input.required<string>();
+   name = "jash"
+  title = model<string>('')
+  userName = model<string>('')
+  userCity = model<string>('')
+  userAge = model<number>()
+  userRole = model<string>('')
+
 }
