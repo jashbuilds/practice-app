@@ -1,9 +1,11 @@
-<app-child [(title)]="title" [(userName)]="userName" [(userCity)]="userCity" [(userAge)]="userAge" [(userRole)]="userRole"/>
+<app-child (userForm)="getFormData($event)" />
 
+@if(receivedData()) {
+<h3>Received Data.</h3> 
+<h3>{{ receivedData().title }}</h3>
+<p>{{ receivedData().userName }}</p>
+<p>{{ receivedData().userCity }}</p>
+<p>{{ receivedData().userAge }}</p>
+<p>{{ receivedData().userRole }}</p>
 
-<h1>Title: {{ title() }}</h1>
-<p>Username: {{ userName() }}</p>
-<p>City: {{ userCity() }}</p>
-<p>Age: {{ userAge() }}</p>
-<p>Role: {{ userRole() }}</p>
-
+}

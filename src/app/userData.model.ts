@@ -2,6 +2,6 @@ export interface UserData {
   title: string,
   userName: string,
   userCity: string,
-  userAge: number,
+  userAge: number | null,
   userRole: string
 }
