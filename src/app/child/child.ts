@@ -1,4 +1,4 @@
-import { Component, OnInit, output, Pipe, signal} from '@angular/core';
+import { Component, OnInit, output, Pipe, signal } from '@angular/core';
 
 import { UserData } from '../userData.model';
 import { FormsModule } from '@angular/forms';
@@ -31,7 +31,7 @@ export class Child implements OnInit {
 
   userForm = output<UserData>()
 
-  onSubmit() { 
+  onSubmit() {
     this.userForm.emit(this.userData())
     this.userData.set({
       title: '',
@@ -40,6 +40,10 @@ export class Child implements OnInit {
       userAge: null,
       userRole: ''
     })
+  }
+
+  updateField(field: string, value: any) {
+    this.userData.update(prev => ({ ...prev, [field]: value }))
   }
 
   isFormValid() {
