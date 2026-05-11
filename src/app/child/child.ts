@@ -1,17 +1,15 @@
-import { Component, OnInit, output, Pipe, signal } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 
 import { UserData } from '../userData.model';
 import { FormsModule } from '@angular/forms';
 
-import { DatePipe } from '@angular/common';
-
 @Component({
   selector: 'app-child',
-  imports: [FormsModule, DatePipe],
+  imports: [FormsModule],
   templateUrl: './child.html',
   styleUrl: './child.css',
 })
-export class Child implements OnInit {
+export class Child {
 
   userData = signal({
     title: '',
@@ -21,18 +19,11 @@ export class Child implements OnInit {
     userRole: ''
   })
 
-  currentDate = signal(new Date())
-
-  ngOnInit() {
-    setInterval(() => {
-      this.currentDate.set(new Date())
-    }, 1000)
-  }
-
   userForm = output<UserData>()
 
   onSubmit() {
     this.userForm.emit(this.userData())
+    
     this.userData.set({
       title: '',
       userName: '',
@@ -47,12 +38,25 @@ export class Child implements OnInit {
   }
 
   isFormValid() {
+    const age = this.userData().userAge
     return (
       this.userData().title.trim() !== '' &&
       this.userData().userName.trim() !== '' &&
       this.userData().userCity.trim() !== '' &&
-      this.userData().userAge !== null &&
+      age !== null && age >= 18 &&
       this.userData().userRole.trim() !== ''
     )
   }
+
+  isAgeValid() {
+    const age = this.userData().userAge
+
+    return age !== null && age < 18
+  }
+
+  onInput(event: any) {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.replace(/[^0-9]/g, '');
+  }
+
 }

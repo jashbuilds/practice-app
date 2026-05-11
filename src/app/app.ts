@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, effect } from '@angular/core';
 import { Child } from "./child/child";
+import { UserData } from './userData.model';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +11,17 @@ import { Child } from "./child/child";
 
 export class App {
 
-  receivedData = signal<any>(null)
+  receivedData = signal<UserData[]>([])
 
   getFormData(data: any) {
-    this.receivedData.set(data)
+    this.receivedData.update(prev => [...prev, data])
+
+
+    // const usersData = JSON.stringify(this.receivedData())
+    // localStorage.setItem("User-Data", usersData)
+
+    // const getUserData = localStorage.getItem("User-Data")
+    // console.log(getUserData);
+
   }
 }

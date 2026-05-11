@@ -1,11 +1,38 @@
-<app-child (userForm)="getFormData($event)" />
+<app-child (userForm)="getFormData($event)" /> <br>
 
-@if(receivedData()) {
-<h3>Received Data.</h3> 
-<h3>{{ receivedData().title }}</h3>
-<p>{{ receivedData().userName }}</p>
-<p>{{ receivedData().userCity }}</p>
-<p>{{ receivedData().userAge }}</p>
-<p>{{ receivedData().userRole }}</p>
+<h1 class="center">UserData</h1>
 
+@if(receivedData().length === 0) {
+<p class="center">Please provide Data and Press "Submit"</p>
+} @else {
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>Age</th>
+            <th>Role</th>
+            <th>Generation</th>
+        </tr>
+    </thead>
+    <tbody class="center">
+        @for (data of receivedData(); track $index) {
+            <tr>
+                <td>{{ data.title }}</td>
+                <td>{{ data.userName}}</td>
+                <td>{{ data.userCity }}</td>
+                <td>{{ data.userAge }}</td>
+                <td>{{ data.userRole }}</td>
+                @if(data.userAge !== null && data.userAge < 40) {
+                    <td>Young</td>
+                } @else if(data.userAge !== null && data.userAge > 40) {
+                    <td>Experienced</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
 }
+
+<hr>

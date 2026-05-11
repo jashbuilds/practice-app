@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: "Red Hat Display", sans-serif;
+}
+
+
+table {
+    max-width: 32rem;
+    margin: 2rem auto;
+    table-layout: fixed;
+    /* border-spacing: 1.5rem; */
+}
+
+table,
+th,
+td {
+    border: 1px solid;
+    padding: 15px;
+    border-collapse: collapse;
+}
+
+.center {
+    text-align: center;
+}
